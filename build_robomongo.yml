@@ -41,7 +41,7 @@
     chdir={{base}}/robomongo
     curl -i -X POST -H "Content-Type: multipart/form-data" \
     -F "image=@{{robomongo_release_dir}}/{{release_files.stdout_lines[1]}}" \
-    {{robomongo_uploads_url}}
+    "{{robomongo_uploads_url}}"
   register: result
 
 - debug: var=result
