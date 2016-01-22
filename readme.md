@@ -3,6 +3,7 @@
 This git repo is a set of vagrant files, which use vagrant images with all preinstalled dependencies to build & test robomongo. We use it internally in combination with CI server to automate robomongo builds.
 
 The general idea is:
+
 1. Run vagrant instance
 2. Run ansible playbook, which build & test Robomongo
 3. Copy OS specific package from vagrant to host machine
