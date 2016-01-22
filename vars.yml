@@ -3,5 +3,5 @@ robomongo_shell_version: roboshell-v3.2
 robomongo_repo: https://github.com/paralect/robomongo
 #branch, tag or git commit hash
 robomongo_version: v0.9
-robomongo_uploads_url: http://192.168.0.102:4000/upload
+robomongo_uploads_url: "http://downloads.robomongo.com/upload?os={{os}}&version={{robomongo_version}}&token={{robomongo_uploads_token}}"
 robomongo_release_dir: "{{base}}/robomongo/build/release/package"

@@ -3,6 +3,7 @@
   sudo: true
   vars_files:
     - vars.yml
+    - ../../credentials.yml
     - ../../vars.yml
   environment:
     ROBOMONGO_CMAKE_PREFIX_PATH: "/home/vagrant/Qt5.5.1/5.5/gcc_64;{{base}}/robomongo-shell"
