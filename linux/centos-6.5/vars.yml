@@ -1,0 +1,3 @@
+base: /home/vagrant/robomongo
+#additional flags to add, when building robomongo_shell
+scons_flags:
