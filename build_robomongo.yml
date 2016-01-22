@@ -1,0 +1,44 @@
+---
+- name: Assures source dir exists
+  file: path={{base}} state=directory
+
+- name: Pull robomongo-shell sources.
+  git: repo="{{ robomongo_shell_repo }}"
+       ssh_opts="-o StrictHostKeyChecking=no"
+       dest="{{base}}/robomongo-shell"
+       version="{{robomongo_shell_version}}"
+  register: robomongo_shell_repo_details
+
+- name: Clean robomongo-shell release
+  shell: chdir={{base}}/robomongo-shell scons -c mongo
+  when: robomongo_shell_repo_details.changed
+
+- name: Build robomongo shell
+  shell: chdir={{base}}/robomongo-shell scons mongo --release -j8 {{scons_flags}}
+  when: robomongo_shell_repo_details.changed
+
+- name: Pull robomongo sources.
+  git: repo="{{ robomongo_repo }}"
+       ssh_opts="-o StrictHostKeyChecking=no"
+       dest="{{base}}/robomongo"
+       version="{{robomongo_version}}"
+  register: robomongo_repo_details
+
+- name: Clean robomongo release
+  shell: chdir={{base}}/robomongo bin/clean
+  when: robomongo_repo_details.changed
+
+- name: Build robomongo
+  shell: chdir={{base}}/robomongo bin/configure && bin/build && bin/pack
+  when: robomongo_repo_details.changed
+
+- name: List files in robomongo release folder
+  shell: chdir="{{robomongo_release_dir}}" ls
+  register: release_files
+
+- name: Upload robomongo release
+  shell: |
+    chdir={{base}}/robomongo
+    curl -i -X POST -H "Content-Type: multipart/form-data" \
+    -F "image=@{{robomongo_release_dir}}/{{release_files.stdout_lines[1]}}" \
+    {{robomongo_uploads_url}}

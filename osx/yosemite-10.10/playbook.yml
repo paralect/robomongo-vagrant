@@ -1,0 +1,11 @@
+---
+- hosts: all
+  sudo: true
+  vars_files:
+    - vars.yml
+    - ../../vars.yml
+  environment:
+    PATH: "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+    ROBOMONGO_CMAKE_PREFIX_PATH: "/Users/vagrant/Qt/5.5/clang_64;/Users/vagrant/robomongo/robomongo-shell"
+  tasks:
+    - include: ../../build_robomongo.yml
