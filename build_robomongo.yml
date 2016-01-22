@@ -21,7 +21,7 @@
   git: repo="{{ robomongo_repo }}"
        ssh_opts="-o StrictHostKeyChecking=no"
        dest="{{base}}/robomongo"
-       version="{{robomongo_version}}"
+       version="{{robomongo_branch}}"
   register: robomongo_repo_details
 
 - name: Clean robomongo release
@@ -42,3 +42,6 @@
     curl -i -X POST -H "Content-Type: multipart/form-data" \
     -F "image=@{{robomongo_release_dir}}/{{release_files.stdout_lines[1]}}" \
     {{robomongo_uploads_url}}
+  register: result
+
+- debug: var=result
