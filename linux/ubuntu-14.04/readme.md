@@ -17,7 +17,7 @@ This is manual process at the moment.
 
 Install g++ & latest QT version:
 ```
-sudo apt-get install build-essential git libssl-dev
+sudo apt-get install build-essential git libssl-dev libgl1-mesa-dev
 wget http://master.qt.io/archive/qt/5.5/5.5.1/qt-opensource-linux-x64-5.5.1.run
 chmod +x qt-opensource-linux-x64-5.5.1.run
 ./qt-opensource-linux-x64-5.5.1.run
