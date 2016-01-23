@@ -1,6 +1,6 @@
 ## Build robomongo for ubuntu using vagrant
 
-Work on the robomongo ubuntu vagrant box is still in progress.
+Build robomongo on Ubuntu based image
 
 Start vagrant
 ```

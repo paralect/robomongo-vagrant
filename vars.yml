@@ -4,5 +4,5 @@ robomongo_repo: https://github.com/paralect/robomongo
 #branch, tag or git commit hash
 robomongo_branch: v0.9
 robomongo_version: 0.9.0-RC1
-robomongo_uploads_url: "http://download.robomongo.org/upload?os={{os}}&version={{robomongo_version}}&token={{robomongo_uploads_token}}"
+robomongo_uploads_url: "http://download.robomongo.org/upload?os={{os}}&version={{robomongo_version}}&linux_type={{linux_type}}&token={{robomongo_uploads_token}}"
 robomongo_release_dir: "{{base}}/robomongo/build/release/package"

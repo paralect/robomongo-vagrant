@@ -2,3 +2,4 @@ base: /home/vagrant/robomongo
 os: linux
 #additional flags to add, when building robomongo_shell
 scons_flags:
+linux_type:
