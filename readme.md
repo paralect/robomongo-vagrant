@@ -17,3 +17,7 @@ The general idea is:
 1. [Vagrant](https://docs.vagrantup.com/v2/installation/)
 2. [Ansible 1.9+](http://docs.ansible.com/ansible/intro_installation.html)
 3. [Virtualbox](https://www.virtualbox.org/wiki/Downloads)
+
+## CI server
+
+CI server deploy in Paralect's local network [here](http://192.168.0.131)
