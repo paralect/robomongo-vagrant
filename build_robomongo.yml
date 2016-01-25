@@ -14,7 +14,7 @@
   when: robomongo_shell_repo_details.changed
 
 - name: Build robomongo shell
-  shell: chdir={{base}}/robomongo-shell scons mongo --release -j8 {{scons_flags}}
+  shell: chdir={{base}}/robomongo-shell scons mongo --release {{scons_flags}}
   when: robomongo_shell_repo_details.changed
 
 - name: Pull robomongo sources.

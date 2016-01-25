@@ -1,5 +1,5 @@
 base: /Users/vagrant/robomongo
 os: osx
 #additional flags to add, when building robomongo_shell
-scons_flags: --osx-version-min=10.9
+scons_flags: -j8 --osx-version-min=10.9
 linux_type:
