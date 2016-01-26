@@ -1,0 +1,5 @@
+base: C:\Users\IEUser\robomongo
+os: windows
+#additional flags to add, when building robomongo_shell
+scons_flags:
+linux_type:
