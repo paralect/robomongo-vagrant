@@ -1,12 +1,44 @@
 ---
 - hosts: all
-  sudo: true
   vars_files:
     - vars.yml
     - ../../credentials.yml
     - ../../vars.yml
-  environment:
-    PATH: "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    ROBOMONGO_CMAKE_PREFIX_PATH: "C:\Qt\5.5\msvc2013_64;C:\Users\IEUser\robomongo\robomongo-shell"
   tasks:
-    - include: ../../build_robomongo.yml
+    - name: Assures robomongo dirs exists
+      win_file: path={{base}} state=directory
+      with_items:
+        - "{{base}}"
+        - "{{base}}\\robomongo-shell"
+        - "{{base}}\\robomongo"
+
+    - name:  Pull robomongo-shell sources.
+      script: powershell/clone_repo.ps1 "{{ robomongo_shell_repo }}" "{{robomongo_shell_version}}" "{{base}}\robomongo-shell"
+      register: robomongo_shell_repo_details
+
+    - name: Clean robomongo-shell
+      script: chdir="{{base}}\robomongo-shell" powershell/clean_robomongo_shell.ps1 "{{base}}\robomongo-shell"
+      when: robomongo_shell_repo_details.stdout_lines[0] != 'Already up-to-date.'
+
+    - name: Build robomongo-shell
+      script: powershell/build_robomongo_shell.ps1 "{{base}}\robomongo-shell"
+      when: robomongo_shell_repo_details.stdout_lines[0] != 'Already up-to-date.'
+
+    - name:  Pull robomongo sources.
+      script: powershell/clone_repo.ps1 "{{ robomongo_repo }}" "{{robomongo_branch}}" "{{base}}\robomongo"
+      register: robomongo_repo_details
+
+    - name: Clean robomongo release
+      script: powershell/clean_robomongo.ps1 "{{base}}/robomongo"
+
+    - name: Build robomongo
+      script: powershell/build_robomongo.ps1 "{{base}}\robomongo" "{{ROBOMONGO_CMAKE_PREFIX_PATH}}"
+      register: robomongo_build
+
+    - debug: var=robomongo_build
+
+    - name: Upload robomongo release
+      script: powershell/upload.ps1 {{robomongo_release_dir}} "{{robomongo_uploads_url}}"
+      register: result
+
+    - debug: var=result

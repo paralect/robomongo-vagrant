@@ -10,3 +10,5 @@ Build robomongo:
 ```
 
 ## Preparing vagrant box to build robomongo
+
+See details [here](https://github.com/paralect/robomongo/blob/master/docs/BuildingRobomongoOnWindows.md)

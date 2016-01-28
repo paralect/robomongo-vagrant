@@ -1,0 +1,1 @@
+default ansible_connection=winrm ansible_ssh_host=127.0.0.1 ansible_winrm_transport='plaintext' ansible_winrm_scheme='http' ansible_winrm_ssl_peer_verification=false ansible_ssh_port=55985 ansible_ssh_user='vagrant' ansible_ssh_pass='vagrant'

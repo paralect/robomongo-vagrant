@@ -5,16 +5,28 @@ Vagrant.configure(2) do |config|
   config.vm.box = "robomongo/windows-8.1"
   config.vm.synced_folder ".", "/vagrant", disabled: true
 
+  config.vm.network "forwarded_port", host: 33389, guest: 3389
+  #open port, so ansible can communicate via winrm
+  config.vm.network "forwarded_port", host: 55985, guest: 5985, id: 'winrm'
+  config.vm.guest = :windows
+  config.vm.boot_timeout = 600
+  config.vm.graceful_halt_timeout = 600
+  config.ssh.username = "vagrant"
+  config.ssh.password = "vagrant"
+  config.ssh.insert_key = false
+
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--usb", "on"]
     vb.customize ["modifyvm", :id, "--usbehci", "off"]
     vb.customize ["modifyvm", :id, "--ioapic", "on"]
     vb.memory = "4096"
-    vb.cpus = 4
-    #vb.gui = true
+    vb.cpus = 2
+    vb.gui = true
   end
 
   config.vm.provision :ansible do |ansible|
     ansible.playbook = "playbook.yml"
+    # ansible.verbose = "vvv"
+    ansible.inventory_path = "./vagrant_ansible_inventory"
   end
 end

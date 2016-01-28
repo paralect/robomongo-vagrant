@@ -3,3 +3,4 @@ os: linux
 #additional flags to add, when building robomongo_shell
 scons_flags: -j8
 linux_type:
+robomongo_release_dir: "{{base}}/robomongo/build/release/package"

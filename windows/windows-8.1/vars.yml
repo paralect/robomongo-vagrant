@@ -1,5 +1,6 @@
-base: C:\Users\IEUser\robomongo
+base: C:\Users\vagrant\robomongo
 os: windows
 #additional flags to add, when building robomongo_shell
-scons_flags:
 linux_type:
+ROBOMONGO_CMAKE_PREFIX_PATH: "C:\\Qt\\5.5\\msvc2013_64;C:\\Users\\vagrant\\robomongo\\robomongo-shell"
+robomongo_release_dir: "{{base}}\\robomongo\\build\\Release\\package"
