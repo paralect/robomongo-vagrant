@@ -28,6 +28,9 @@
     - name: Build robomongo-shell
       script: powershell/build_robomongo_shell.ps1 "{{base}}\robomongo-shell"
       when: robomongo_shell_repo_details.stdout_lines[0] != 'Already up-to-date.' or (robomongo_shell_build_dir.stat.exists == false)
+      register: robomongo_shell_build_details
+
+    - debug: var=robomongo_shell_build_details
 
     - name:  Pull robomongo sources.
       script: powershell/clone_repo.ps1 "{{ robomongo_repo }}" "{{robomongo_branch}}" "{{base}}\robomongo"
