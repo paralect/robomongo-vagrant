@@ -6,7 +6,7 @@
     - ../../vars.yml
   tasks:
     - name: Assures robomongo dirs exists
-      win_file: path={{base}} state=directory
+      win_file: path={{item}} state=directory
       with_items:
         - "{{base}}"
         - "{{base}}\\robomongo-shell"
@@ -16,20 +16,25 @@
       script: powershell/clone_repo.ps1 "{{ robomongo_shell_repo }}" "{{robomongo_shell_version}}" "{{base}}\robomongo-shell"
       register: robomongo_shell_repo_details
 
+    - win_stat: path={{base}}\\robomongo-shell\\build\\opt
+      register: robomongo_shell_build_dir
+
+    - debug: var=robomongo_shell_build_dir
+
     - name: Clean robomongo-shell
-      script: chdir="{{base}}\robomongo-shell" powershell/clean_robomongo_shell.ps1 "{{base}}\robomongo-shell"
-      when: robomongo_shell_repo_details.stdout_lines[0] != 'Already up-to-date.'
+      script: powershell/clean_robomongo_shell.ps1 "{{base}}\robomongo-shell"
+      when: robomongo_shell_repo_details.stdout_lines[0] != 'Already up-to-date.' or (robomongo_shell_build_dir.stat.exists == false)
 
     - name: Build robomongo-shell
       script: powershell/build_robomongo_shell.ps1 "{{base}}\robomongo-shell"
-      when: robomongo_shell_repo_details.stdout_lines[0] != 'Already up-to-date.'
+      when: robomongo_shell_repo_details.stdout_lines[0] != 'Already up-to-date.' or (robomongo_shell_build_dir.stat.exists == false)
 
     - name:  Pull robomongo sources.
       script: powershell/clone_repo.ps1 "{{ robomongo_repo }}" "{{robomongo_branch}}" "{{base}}\robomongo"
       register: robomongo_repo_details
 
     - name: Clean robomongo release
-      script: powershell/clean_robomongo.ps1 "{{base}}/robomongo"
+      script: powershell/clean_robomongo.ps1 "{{base}}\robomongo"
 
     - name: Build robomongo
       script: powershell/build_robomongo.ps1 "{{base}}\robomongo" "{{ROBOMONGO_CMAKE_PREFIX_PATH}}"

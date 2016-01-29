@@ -9,7 +9,7 @@
        version="{{robomongo_shell_version}}"
   register: robomongo_shell_repo_details
 
-- stat: path={{base}}/robomongo-shell/build
+- stat: path={{base}}/robomongo-shell/build/opt
   register: robomongo_shell_build
 
 - name: Clean robomongo-shell release

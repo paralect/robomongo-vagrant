@@ -1,4 +1,4 @@
 $workDir = $args[0]
-
+Write-Host 'clean robomongo shell'
 cd $workDir
-scons -c mongo
+cmd.exe /c 'bin\clean.bat'

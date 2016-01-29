@@ -1,0 +1,11 @@
+---
+- hosts: all
+  sudo: true
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Clean robomongo-shell build
+      shell: chdir={{base}}/robomongo-shell bin/clean
+
+    - name: Clean robomongo build
+      shell: chdir={{base}}/robomongo bin/clean

@@ -1,2 +1,2 @@
 #!/bin/sh
-vagrant provision --provision-with ansible
+vagrant provision --provision-with build

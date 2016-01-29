@@ -1,0 +1,10 @@
+---
+- hosts: all
+  vars_files:
+    - vars.yml
+  tasks:
+    - name: Clean robomongo-shell
+      script: powershell/clean_robomongo_shell.ps1 "{{base}}\\robomongo-shell"
+
+    - name: Clean robomongo release
+      script: powershell/clean_robomongo.ps1 "{{base}}\\robomongo"
