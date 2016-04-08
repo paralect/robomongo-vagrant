@@ -1,6 +1,6 @@
 ## Build robomongo for centos using vagrant
 
-Build Robomongo in Centos based vagrant. 
+Build Robomongo in Centos based vagrant.
 
 Start vagrant
 ```
@@ -45,4 +45,9 @@ chmod +x cmake-3.4.2-Linux-x86_64.sh
 ./cmake-3.4.2-Linux-x86_64.sh
 mkdir /opt/cmake
 mv ./cmake-3.4.2-Linux-x86_64 /opt/cmake
+```
+
+Install `rpmbuild`:
+```
+sudo yum install rpm-build
 ```
