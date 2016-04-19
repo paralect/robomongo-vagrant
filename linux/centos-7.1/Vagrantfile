@@ -4,6 +4,7 @@
 Vagrant.configure(2) do |config|
   config.vm.box = "robomongo/centos-7.1"
   config.vm.synced_folder ".", "/vagrant", disabled: true
+  config.vm.box_version = "1.0.1"
 
   config.vm.provider "virtualbox" do |vb|
     vb.customize ["modifyvm", :id, "--usb", "on"]
