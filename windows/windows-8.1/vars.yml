@@ -2,5 +2,5 @@ base: C:\Users\vagrant\robomongo
 os: windows
 #additional flags to add, when building robomongo_shell
 linux_type:
-ROBOMONGO_CMAKE_PREFIX_PATH: "C:\\Qt\\Qt5.7.0\\5.7\\msvc2013_64;C:\\Users\\vagrant\\robomongo\\robomongo-shell;C:\\Users\\IEUser\\Documents\\Openssl\\openssl-1.0.1p"
+ROBOMONGO_CMAKE_PREFIX_PATH: "C:\\Qt\\Qt5.7.0\\5.7\\msvc2013_64;C:\\Users\\vagrant\\robomongo\\robomongo-shell;C:\\Openssl\\openssl-1.0.1p"
 robomongo_release_dir: "{{base}}\\robomongo\\build\\Release\\package"
