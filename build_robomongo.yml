@@ -13,11 +13,11 @@
   register: robomongo_shell_build
 
 - name: Clean robomongo-shell release
-  shell: chdir={{base}}/robomongo-shell scons -c mongo
+  shell: chdir={{base}}/robomongo-shell bin/clean
   when: robomongo_shell_repo_details.changed or (robomongo_shell_build.stat.isdir is undefined)
 
 - name: Build robomongo shell
-  shell: chdir={{base}}/robomongo-shell scons mongo --release {{scons_flags}}
+  shell: chdir={{base}}/robomongo-shell bin/build
   register: robomongo_shell_build_details
   when: robomongo_shell_repo_details.changed or (robomongo_shell_build.stat.isdir is undefined)
 
