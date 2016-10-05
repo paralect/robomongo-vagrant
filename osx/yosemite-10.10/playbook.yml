@@ -7,6 +7,6 @@
     - ../../vars.yml
   environment:
     PATH: "/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
-    ROBOMONGO_CMAKE_PREFIX_PATH: "/Users/vagrant/Qt/5.5/clang_64;/Users/vagrant/robomongo/robomongo-shell"
+    ROBOMONGO_CMAKE_PREFIX_PATH: "/Users/vagrant/Qt5.7.0/5.7/clang_64;/Users/vagrant/openssl/openssl-1.0.1p;/Users/vagrant/robomongo/robomongo-shell"
   tasks:
     - include: ../../build_robomongo.yml
