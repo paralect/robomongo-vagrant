@@ -3,5 +3,5 @@ robomongo_shell_version: roboshell-v3.2
 robomongo_repo: https://github.com/paralect/robomongo
 #branch, tag or git commit hash
 robomongo_branch: master
-robomongo_version: 0.9.0
+robomongo_version: 1.0.0
 robomongo_uploads_url: "https://download.robomongo.org/upload?os={{os}}&version={{robomongo_version}}&linux_type={{linux_type}}&token={{robomongo_uploads_token}}"
